@@ -72,10 +72,11 @@ in
           provisioners = [{
             remote-exec.inline = [
               ''
+                curl https://raw.githubusercontent.com/elitak/nixos-infect/master/nixos-infect | \
                 NO_REBOOT="dont" \
-                PROVIDER=HCloud \
+                PROVIDER=hetznercloud \
                 NIX_CHANNEL=${configuration.channel} \
-                curl https://raw.githubusercontent.com/elitak/nixos-infect/master/nixos-infect | bash 2>&1 | tee /tmp/infect.log
+                bash 2>&1 | tee /tmp/infect.log
               ''
               "shutdown -r +1"
             ];
